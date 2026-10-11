@@ -11,72 +11,94 @@ namespace Planets
 {
     internal class Program
     {
+        private static readonly PlanetManager Manager = new PlanetManager();
+
         static void Main(string[] args)
         {
-            List<Planet> planets = new List<Planet>();
             while (true)
             {
-                Console.WriteLine("Меню выбора:");
-                Console.WriteLine("1 - добавить планеты");
-                Console.WriteLine("2 - удалить планеты");
-                Console.WriteLine("3 - список планет");
-                Console.WriteLine("0 - выход");
+                ShowMenu();
                 string choice = Console.ReadLine();
 
-                if (choice == "0") 
-                {
-                    break;
-                }
+                if (choice == "0") break;
 
-                if (choice == "1")
-                {
-                    Console.WriteLine("Введите название планеты в кавычках, год в формате гггг.мм.дд и радиус планеты через пробел");
-                    string input = Console.ReadLine();
-                    planets.Add(Parsing(input));
-                }
-                else if (choice == "2")
-                {
-                    Console.WriteLine("Введите название планеты которую надо удалить:");
-                    string name = Console.ReadLine();
-                    foreach (Planet planet in planets)
-                    {
-                        if (planet.Name == name) 
-                        {
-                            planets.RemoveAt(planet);
-                            break;
-                        }
-                    }
-                }
-                else if (choice == "3")
-                {
-                    foreach (Planet planet in planets)
-                    {
-                        Console.WriteLine(planet.Name);
-                    }
-                }
-                else 
-                {
-                    Console.WriteLine("Неизвестная команда");
-                }
+                ExecuteCommand(choice);
             }
         }
-        static Planet Parsing(string input) 
+
+        private static void ShowMenu()
         {
-            int first = input.IndexOf('"');
-            int second = input.IndexOf('"', first + 1);
-            string name = input.Substring(first + 1, second - first - 1);
+            Console.WriteLine("\n--- Меню выбора ---");
+            Console.WriteLine("1 - Добавить планеты из файла");
+            Console.WriteLine("2 - Удалить планету по названию");
+            Console.WriteLine("3 - Список всех планет");
+            Console.WriteLine("0 - Выход");
+            Console.Write("Выберите команду: ");
+        }
 
-            string rest = input.Substring(second + 1).Trim();
-            string[] parts = rest.Split(' ');
+        private static void ExecuteCommand(string choice)
+        {
+            switch (choice)
+            {
+                case "1":
+                    LoadPlanetsFromFile();
+                    break;
+                case "2":
+                    DeletePlanet();
+                    break;
+                case "3":
+                    ShowAllPlanets();
+                    break;
+                default:
+                    Console.WriteLine("Неизвестная команда.");
+                    break;
+            }
+        }
 
-            Planet planet = new Planet();
-            planet.Name = name;
-            planet.Date = DateTime.Parse(parts[0]);
-            planet.Radius = double.Parse(parts[1]);
+        private static void LoadPlanetsFromFile()
+        {
+            Console.Write("Введите путь к файлу (например, planets.txt): ");
+            string path = Console.ReadLine();
+            try
+            {
+                var loaded = Parser.ParseFile(path);
+                Manager.AddRange(loaded);
+                Console.WriteLine($"Успешно загружено объектов: {loaded.Count}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при чтении файла: {ex.Message}");
+            }
+        }
 
-            Console.WriteLine($"Планета: {planet.Name} Дата открытия: {planet.Date:yyyy.MM.dd},Радиус: {planet.Radius}");
+        private static void DeletePlanet()
+        {
+            Console.Write("Введите название планеты для удаления: ");
+            string name = Console.ReadLine();
+            if (Manager.RemoveByName(name))
+            {
+                Console.WriteLine("Планета успешно удалена.");
+            }
+            else
+            {
+                Console.WriteLine("Планета с таким названием не найдена.");
+            }
+        }
 
-            return planet;
+        private static void ShowAllPlanets()
+        {
+            var list = Manager.GetAll();
+            if (list.Count == 0)
+            {
+                Console.WriteLine("Список планет пуст.");
+                return;
+            }
+
+            Console.WriteLine("\nСписок планет в системе:");
+            foreach (Planet planet in list)
+            {
+                Console.WriteLine(planet.GetInfo());
+            }
         }
     }
 }
