@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Planets
 {
-    internal class Exoplanet
+    internal class Exoplanet : Planet
     {
+        public string StarSystem { get; set; }
+        public bool IsHabitable { get; set; }
     }
 }
