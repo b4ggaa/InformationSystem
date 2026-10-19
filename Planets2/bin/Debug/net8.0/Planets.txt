@@ -1,0 +1,8 @@
+planet;Земля;2024.01.15;6371
+planet;Марс;1659.07.25;3389.5
+gasgiant;Юпитер;1610.01.07;69911;95
+gasgiant;Сатурн;1610.03.15;58232;146
+exoplanet;Kepler-452b;2015.07.23;9556;Cygnus;true
+exoplanet;Proxima Centauri b;2016.08.24;7167;Centaurus;true
+exoplanet;Плохая планета;2016.08.24;100;Unknown;maybe
+строка

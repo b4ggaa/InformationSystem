@@ -1,0 +1,15 @@
+C:\Users\USER\source\repos\Planets2\bin\Debug\net8.0\Planets2.exe
+C:\Users\USER\source\repos\Planets2\bin\Debug\net8.0\Planets2.deps.json
+C:\Users\USER\source\repos\Planets2\bin\Debug\net8.0\Planets2.runtimeconfig.json
+C:\Users\USER\source\repos\Planets2\bin\Debug\net8.0\Planets2.dll
+C:\Users\USER\source\repos\Planets2\bin\Debug\net8.0\Planets2.pdb
+C:\Users\USER\source\repos\Planets2\obj\Debug\net8.0\Planets2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\source\repos\Planets2\obj\Debug\net8.0\Planets2.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\Planets2\obj\Debug\net8.0\Planets2.AssemblyInfo.cs
+C:\Users\USER\source\repos\Planets2\obj\Debug\net8.0\Planets2.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\Planets2\obj\Debug\net8.0\Planets2.sourcelink.json
+C:\Users\USER\source\repos\Planets2\obj\Debug\net8.0\Planets2.dll
+C:\Users\USER\source\repos\Planets2\obj\Debug\net8.0\refint\Planets2.dll
+C:\Users\USER\source\repos\Planets2\obj\Debug\net8.0\Planets2.pdb
+C:\Users\USER\source\repos\Planets2\obj\Debug\net8.0\Planets2.genruntimeconfig.cache
+C:\Users\USER\source\repos\Planets2\obj\Debug\net8.0\ref\Planets2.dll
